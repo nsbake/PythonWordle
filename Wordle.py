@@ -25,10 +25,26 @@ def wordle():
 
         gw.set_square_letter(N_ROWS-r, N_COLS-c, letter)
         c -=1
-    
+    currentRow = 1
+    gw.set_current_row(currentRow)
     def enter_action(s):
-        gw.show_message("You have to implement this method.")
-
+        nonlocal currentRow
+        #set empty string
+        tempWord= ""
+        for x in range(5):
+            #create string of guess letters
+            tempWord = tempWord + gw.get_square_letter(currentRow,x)
+        #check if guess is in list
+        if tempWord.lower() in FIVE_LETTER_WORDS:
+            gw.show_message("Good guess, try again")
+            currentRow += 1
+            gw.set_current_row(currentRow)
+            tempWord= ""
+        else:
+            gw.show_message("Not in word list")
+            gw.set_current_row(currentRow)
+            tempWord= ""
+    #callback function for enter    
     gw.add_enter_listener(enter_action)
 
 # Startup code
