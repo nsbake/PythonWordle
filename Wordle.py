@@ -27,7 +27,7 @@ def wordle():
         for x in range(5):
             #create string of guess letters
             tempWord = tempWord + gw.get_square_letter(currentRow,x)
-        #check if guess is in list
+        #if they guess the correct word
         if tempWord.upper() == word.upper():
             if currentRow == 1:
                 gw.show_message("Wow! You got lucky")
@@ -39,10 +39,12 @@ def wordle():
                 gw.show_message("Nice job!")
             elif currentRow == 5:
                 gw.show_message("That was close...")
+        #check if the guess is in the list
         elif tempWord.lower() in FIVE_LETTER_WORDS:
             gw.show_message("Good guess, try again")
             currentRow += 1
             gw.set_current_row(currentRow)
+        #if the guess isn't in the list then reset the tempword and stay on the same row
         else:
             gw.show_message("Not in word list")
             gw.set_current_row(currentRow)
@@ -51,3 +53,6 @@ def wordle():
 # Startup code
 if __name__ == "__main__":
     wordle()
+
+
+
