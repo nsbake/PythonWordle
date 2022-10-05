@@ -41,18 +41,21 @@ def wordle():
                 gw.show_message("That was close...")
         #check if the guess is in the list
         elif tempWord.lower() in FIVE_LETTER_WORDS:
-            gw.show_message("Good guess, try again")
-            currentRow += 1
-            gw.set_current_row(currentRow)
+            if currentRow == 5:
+                gw.show_message("Sorry! Better luck next time!")
+            else:
+                gw.show_message("Good guess, try again")
+                currentRow += 1
+                gw.set_current_row(currentRow)
+                tempWord= ""
         #if the guess isn't in the list then reset the tempword and stay on the same row
         else:
             gw.show_message("Not in word list")
             gw.set_current_row(currentRow)
+            tempWord= ""
     #callback function for enter
     gw.add_enter_listener(enter_action)
 # Startup code
 if __name__ == "__main__":
     wordle()
-
-
 
