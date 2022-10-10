@@ -106,7 +106,6 @@ def wordle():
 
     #callback function for enter
     gw.add_enter_listener(enter_action)
-
 # Startup code
 if __name__ == "__main__":
     try:
